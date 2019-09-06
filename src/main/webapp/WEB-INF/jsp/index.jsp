@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,15 +12,25 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/geolocation">Geolocation</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="/geolocation">Geolocation log<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link btn btn-dark" href="/geolocation/addform">Add location</a>
-        </div>
+        <a class="navbar-brand" href="/geolocation">Geolocation</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-item nav-link btn" href="/geolocation">Geolocation log<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link btn " href="/geolocation/putCoordinates">Put coordinates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link btn " href="/geolocation/putQuery">Put query</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link btn " href="/geolocation/countrySearch">Search log by country</a>
+            </li>
+        </ul>
+        <a class="nav-item nav-link btn" href="/logout">LogOut</a>
+
     </div>
 </nav>
 

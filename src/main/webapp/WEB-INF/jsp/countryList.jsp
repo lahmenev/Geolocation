@@ -25,7 +25,7 @@
 </nav>
 
 <div class="container">
-    <h2 style="margin-bottom: 20px; margin-top: 20px"; align="center">Geolocation log</h2>
+    <h2 style="margin-bottom: 20px; margin-top: 20px"; align="center">Details by Country</h2>
     <table border="1" cellpadding="5" class="table table-striped">
         <thead class="thead-dark">
         <th scope="row">Id</th>
@@ -37,7 +37,7 @@
         <th scope="row">Osm type</th>
         </thead>
         <tbody>
-        <c:forEach items="${geoList}" var="geo">
+        <c:forEach items="${detailsByCountry}" var="geo">
             <tr>
                 <td>${geo.id}</td>
                 <td>${geo.addressEntity.country}</td>

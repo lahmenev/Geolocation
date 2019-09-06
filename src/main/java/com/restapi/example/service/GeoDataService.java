@@ -19,4 +19,6 @@ public interface GeoDataService {
     void saveData(GeolocationDTO geolocationDTO);
 
     List<GeolocationEntity> getGeoList();
+
+    List<GeolocationEntity> getDetailsByCountry(String countryName);
 }

@@ -2,7 +2,6 @@ package com.restapi.example.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * email : s.lakhmenev@andersenlab.com
@@ -22,6 +21,7 @@ public class GeolocationDTO {
     private double lon;
     @JsonProperty("display_name")
     private String displayName;
+
     private String query;
     @JsonProperty("address")
     private AddressDTO addressDTO;

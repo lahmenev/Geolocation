@@ -42,6 +42,11 @@ public class GeoDataServiceImpl implements GeoDataService {
                 HttpMethod.GET, entity, String.class);
 
         String jsonData = responseEntity.getBody();
+
+        if (jsonData.startsWith("[")) {
+            jsonData = jsonData.substring(1, jsonData.length() - 1);
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonData, GeolocationDTO.class);
     }
@@ -67,5 +72,10 @@ public class GeoDataServiceImpl implements GeoDataService {
     @Override
     public List<GeolocationEntity> getGeoList() {
         return geoRepo.findAll();
+    }
+
+    @Override
+    public List<GeolocationEntity> getDetailsByCountry(String countryName) {
+        return geoRepo.findAllByAddressEntity_Country(countryName);
     }
 }

@@ -17,14 +17,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="/geolocation">Geolocation log<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link btn btn-dark" href="/geolocation/addform">Add location</a>
+            <a class="nav-item nav-link btn" href="/geolocation">Geolocation log<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link btn " href="/geolocation/putCoordinates">Put coordinates</a>
+            <a class="nav-item nav-link btn " href="/geolocation/putQuery">Put query</a>
+            <a class="nav-item nav-link btn " href="/geolocation/countrySearch">Search log by country</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <form:form action="/geolocation" modelAttribute="geoData" method="post">
+    <form:form action="/geolocation/location" modelAttribute="geoData" method="post">
         <div class="form-group">
             <label>Latitute</label>
             <form:input path="latitute" cssClass="form-control"/>
