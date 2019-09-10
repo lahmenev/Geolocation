@@ -1,9 +1,7 @@
 package com.restapi.example.repository;
 
-import com.restapi.example.dto.GeolocationDTO;
 import com.restapi.example.entity.GeolocationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
 /**
@@ -14,10 +12,26 @@ import java.util.List;
  */
 public interface GeolocationRepo extends JpaRepository<GeolocationEntity,Integer> {
 
+    /**
+     * Retrieves all items from database
+     *
+     * @return list of data entity
+     */
     List<GeolocationEntity> findAll();
 
+    /**
+     * Retrieves items from database by username
+     *
+     * @param username name of User object
+     * @return list of data entity with current username
+     */
+    List<GeolocationEntity> findAllByUsername(String username);
 
-    //GeolocationEntity getDetailsByCountry(String countryName);
-
+    /**
+     * Retrieves items by country
+     *
+     * @param countryName country name of Address entity
+     * @return list of data entity by input countryName parameter
+     */
     List<GeolocationEntity> findAllByAddressEntity_Country(String countryName);
 }

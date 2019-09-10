@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head lang="en">
+    <title>Search Country</title>
+    <div th:insert="fragments/headerinc :: head"/>
+</head>
+<body>
+<div th:insert="fragments/header :: header"/>
+
+<div class="container" style="margin-top: 25px">
+    <form action="#" th:action="@{/geolocation/countrySearch/search}" th:object="${geoData}" method="post">
+        <div class="form-group">
+            <p>Query by country: <input type="text" th:field="*{query}" class="form-control"/></p>
+        </div>
+        <button type="submit" class="btn btn-dark">Enter query</button>
+    </form>
+</div>
+
+</body>
+</html>

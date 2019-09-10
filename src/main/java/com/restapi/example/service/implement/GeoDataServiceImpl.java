@@ -8,9 +8,8 @@ import com.restapi.example.repository.GeolocationRepo;
 import com.restapi.example.service.GeoDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
  * @author Lakhmenev Sergey
  * @version 1.1
  */
-@Component
+@Service
 public class GeoDataServiceImpl implements GeoDataService {
 
     @Autowired
@@ -30,8 +29,15 @@ public class GeoDataServiceImpl implements GeoDataService {
     @Autowired
     GeolocationRepo geoRepo;
 
+    /**
+     * Retrieves data from Json and converts it to GeolocationDTO object
+     *
+     * @param url input url of API with Json data
+     * @return GeolocationDTO object
+     * @throws IOException
+     */
     @Override
-    public GeolocationDTO retrieveGeoDetails(String url) throws IOException {
+    public GeolocationDTO convertToObject(String url) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -51,10 +57,14 @@ public class GeoDataServiceImpl implements GeoDataService {
         return mapper.readValue(jsonData, GeolocationDTO.class);
     }
 
-
-
+    /**
+     * Saves Geolocation data to database with specified user
+     *
+     * @param geolocationDTO object with data from API
+     * @param username specified name of user
+     */
     @Override
-    public void saveData(GeolocationDTO geolocationDTO) {
+    public void saveData(GeolocationDTO geolocationDTO, String username) {
         AddressEntity addressEntity = new AddressEntity();
         GeolocationEntity geolocationEntity = new GeolocationEntity();
 
@@ -66,14 +76,27 @@ public class GeoDataServiceImpl implements GeoDataService {
         geolocationEntity.setOsmType(geolocationDTO.getOsmType());
         geolocationEntity.setLatitute(geolocationDTO.getLatitute());
         geolocationEntity.setLon(geolocationDTO.getLon());
+        geolocationEntity.setUsername(username);
         geoRepo.save(geolocationEntity);
     }
 
+    /**
+     * Retrieves data from database
+     *
+     * @param username specified name of user
+     * @return list of GeolocationEntity data
+     */
     @Override
-    public List<GeolocationEntity> getGeoList() {
-        return geoRepo.findAll();
+    public List<GeolocationEntity> getGeoList(String username) {
+        return geoRepo.findAllByUsername(username);
     }
 
+    /**
+     * Retrieves data by country
+     *
+     * @param countryName specified name of country
+     * @return list of GeolocationEntity data
+     */
     @Override
     public List<GeolocationEntity> getDetailsByCountry(String countryName) {
         return geoRepo.findAllByAddressEntity_Country(countryName);

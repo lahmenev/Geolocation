@@ -1,7 +1,6 @@
 package com.restapi.example.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 /**
  * email : s.lakhmenev@andersenlab.com
@@ -24,6 +23,7 @@ public class GeolocationEntity {
     private double lon;
     @Column(name = "display_name")
     private String displayName;
+    private String username;
     @Embedded
     private AddressEntity addressEntity;
 
@@ -83,22 +83,11 @@ public class GeolocationEntity {
         this.addressEntity = addressEntity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GeolocationEntity that = (GeolocationEntity) o;
-        return id == that.id &&
-                osmId == that.osmId &&
-                Double.compare(that.latitute, latitute) == 0 &&
-                Double.compare(that.lon, lon) == 0 &&
-                Objects.equals(osmType, that.osmType) &&
-                Objects.equals(displayName, that.displayName) &&
-                Objects.equals(addressEntity, that.addressEntity);
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, osmType, osmId, latitute, lon, displayName, addressEntity);
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

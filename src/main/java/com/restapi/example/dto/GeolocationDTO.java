@@ -21,7 +21,6 @@ public class GeolocationDTO {
     private double lon;
     @JsonProperty("display_name")
     private String displayName;
-
     private String query;
     @JsonProperty("address")
     private AddressDTO addressDTO;

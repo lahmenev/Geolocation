@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head lang="en">
+    <div th:insert="fragments/headerinc :: head"/>
+</head>
+<body>
+
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <a class="navbar-brand" href="/geolocation">Geolocation</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-item nav-link btn" href="/geolocation">Geolocation log<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link btn " href="/geolocation/putCoordinates">Put coordinates</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link btn " href="/geolocation/countrySearch">Search log by country</a>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${#httpServletRequest.remoteUser != null}">
+            <p class="navbar-brand" th:text="${#httpServletRequest.remoteUser}">
+            </p>
+        </div>
+        <form class="form-inline" action="#" th:action="@{/geolocation/query}" method="post">
+            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Put your query"
+                   aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+        </form>
+
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head lang="en">
+    <title>Geolocation list</title>
+    <div th:insert="fragments/headerinc :: head"/>
+</head>
+<body>
+<div th:insert="fragments/header :: header"/>
+
+<div class="container">
+    <h2 style="margin-bottom: 20px; margin-top: 20px"; align="center">Geolocation log</h2>
+    <table border="1" cellpadding="5" class="table table-striped">
+        <thead class="thead-dark">
+        <th scope="row">Id</th>
+        <th scope="row">Country</th>
+        <th scope="row">Display name</th>
+        <th scope="row">Latitute</th>
+        <th scope="row">Lon</th>
+        <th scope="row">Osm id</th>
+        <th scope="row">Osm type</th>
+        </thead>
+        <tbody>
+        <th:block th:each="geo : ${geoList}">
+            <tr>
+                <td th:text="${geo.getId()}"></td>
+                <td th:text="${geo.addressEntity.getCountry()}"></td>
+                <td th:text="${geo.getDisplayName()}"></td>
+                <td th:text="${geo.getLatitute()}"></td>
+                <td th:text="${geo.getLon()}"></td>
+                <td th:text="${geo.getOsmId()}"></td>
+                <td th:text="${geo.getOsmType()}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
