@@ -83,7 +83,7 @@ public class GeolocationController {
 
     /**
      * Shows view of geolocation log
-     *
+     * asas
      * @param model Model for storing object
      * @param principal current Principal
      * @return
