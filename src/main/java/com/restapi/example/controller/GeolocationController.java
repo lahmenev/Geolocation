@@ -70,6 +70,7 @@ public class GeolocationController {
 
     /**
      * Shows form for adding coordinates
+     * asda
      *
      * @param model Model for storing object
      * @return view representation
